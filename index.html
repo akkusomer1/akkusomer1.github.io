@@ -141,9 +141,9 @@ h2{font-size:1.9rem;font-weight:600;margin-bottom:2.5rem;letter-spacing:-.5px}
 @media(max-width:768px){.gh-proj-grid{grid-template-columns:1fr}}
 .gh-proj-card{background:var(--dark2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;text-decoration:none;color:inherit;transition:all .2s}
 .gh-proj-card:hover{border-color:rgba(88,166,255,.35);transform:translateY(-1px)}
-.gh-proj-card-left{display:flex;align-items:center;gap:.65rem;min-width:0}
+.gh-proj-card-left{display:flex;align-items:center;gap:.65rem;min-width:0;flex:1}
 .gh-proj-card-left svg{width:16px;height:16px;fill:var(--muted);flex-shrink:0}
-.gh-proj-name{font-size:13px;font-weight:500;color:var(--text);font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gh-proj-name{font-size:13px;font-weight:500;color:var(--text);font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .gh-proj-arrow{width:14px;height:14px;fill:var(--muted);flex-shrink:0;transition:fill .2s}
 .gh-proj-card:hover .gh-proj-arrow{fill:var(--accent)}
 
@@ -180,6 +180,11 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
   .contact-grid{grid-template-columns:1fr}
   .stats-inner{grid-template-columns:repeat(2,1fr)}
   nav .nav-links{display:none}
+  .proj-header{flex-direction:column;align-items:flex-start;gap:.5rem}
+  .proj-header-right{flex-wrap:wrap;gap:.35rem}
+  .proj-header-left{width:100%}
+  .gh-proj-name{white-space:normal}
+  .section-label{flex-wrap:wrap}
 }
 </style>
 </head>
