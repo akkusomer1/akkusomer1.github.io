@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,9 +28,13 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(13,17,23,0.85);b
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
 .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);text-decoration:none}
 .nav-logo span{color:var(--muted)}
+.nav-actions{display:flex;align-items:center;gap:1.5rem}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
+.lang-switcher{display:inline-flex;align-items:center;gap:.55rem;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.lang-switcher button{background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:0;transition:color .2s}
+.lang-switcher button:hover,.lang-switcher button.active{color:var(--text)}
 
 /* HERO */
 .hero{min-height:91vh;display:flex;align-items:center;padding:80px 2rem 4rem;position:relative;overflow:hidden}
@@ -78,9 +82,7 @@ h2{font-size:1.9rem;font-weight:600;margin-bottom:2.5rem;letter-spacing:-.5px}
 .skill-card{background:var(--dark2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:border-color .2s}
 .skill-card:hover{border-color:rgba(88,166,255,.3)}
 .skill-card-title{font-size:13px;font-weight:600;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
-.skill-card-title svg{width:14px;height:14px;fill:currentColor}
-.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.skill-tags{gap:.25rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.25rem}
 .skill-tag{font-size:11px;padding:.15rem .45rem;border-radius:3px;background:var(--dark3);border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;transition:all .18s ease;cursor:default}
 .skill-tag:hover{color:var(--accent);border-color:rgba(88,166,255,.5);background:rgba(88,166,255,.08);transform:translateY(-1px)}
 
@@ -179,6 +181,7 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
   .exp-meta{text-align:left}
   .contact-grid{grid-template-columns:1fr}
   .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .nav-actions{gap:1rem}
   nav .nav-links{display:none}
   .proj-header{flex-direction:column;align-items:flex-start;gap:.5rem}
   .proj-header-right{flex-wrap:wrap;gap:.35rem}
@@ -193,13 +196,20 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo"><span>~/</span>Ömer Akkuş</a>
-    <ul class="nav-links">
-      <li><a href="#skills">Beceriler</a></li>
-      <li><a href="#experience">Deneyim</a></li>
-      <li><a href="#projects">Projeler</a></li>
-      <li><a href="#education">Eğitim</a></li>
-      <li><a href="#contact">İletişim</a></li>
-    </ul>
+    <div class="nav-actions">
+      <ul class="nav-links">
+        <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+        <li><a href="#experience" data-i18n="nav_experience">Experience</a></li>
+        <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+        <li><a href="#education" data-i18n="nav_education">Education</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <div class="lang-switcher" aria-label="Language selector">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <span>|</span>
+        <button type="button" class="lang-btn" data-lang="tr">TR</button>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -207,35 +217,34 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-tag">Backend Developer <span style="color:var(--border);margin:0 .4rem">·</span> <span style="color:var(--muted)">İstanbul, Türkiye</span></div>
+      <div class="hero-tag" data-i18n-html="hero_tag">Backend Developer <span style="color:var(--border);margin:0 .4rem">·</span> <span style="color:var(--muted)">Istanbul, Türkiye</span></div>
       <h1>Ömer <em>Akkuş</em></h1>
-      <p class="hero-sub">
-        <strong>.NET, mikroservis mimarileri ve AI/LLM tabanlı çözümler</strong> ile ölçeklenebilir backend sistemleri tasarlıyorum. Yüksek performanslı, veri yoğun ve mission-critical uygulamalarda; asenkron iş akışları, yüksek veri hacmi ve karmaşık iş alanlarını yöneten <strong>dağıtık sistemler</strong> kuruyorum.<br><br>
-        Sadece implementasyonla yetinmiyor; <strong>dayanıklı, sürdürülebilir ve production-ready</strong> mimariler tasarlıyorum. Backend'lere aktif olarak AI entegre ediyor; <strong>LLM API'leri, embedding'ler ve semantik arama</strong> ile akıllı uygulamalar geliştiriyorum.
+      <p class="hero-sub" data-i18n-html="hero_sub">
+        <strong>I design scalable backend systems</strong> with .NET, microservice architectures, and AI/LLM-based solutions. In high-performance, data-intensive, and mission-critical applications, I build <strong>distributed systems</strong> that manage asynchronous workflows, high data volumes, and complex business domains.<br><br>
+        I do not stop at implementation alone; I design <strong>resilient, sustainable, and production-ready</strong> architectures. I actively integrate AI into backends and develop intelligent applications with <strong>LLM APIs, embeddings, and semantic search</strong>.
       </p>
       <div class="hero-btns">
-        <a href="#projects" class="btn btn-primary">Projeleri Gör</a>
-        <a href="mailto:akkusomer156@gmail.com" class="btn btn-ghost">İletişime Geç</a>
-        <a href="Omer_Akkus_CV.pdf" class="btn btn-ghost" target="_blank" rel="noopener">CV İndir</a>
+        <a href="#projects" class="btn btn-primary" data-i18n="hero_btn_projects">View Projects</a>
+        <a href="mailto:akkusomer156@gmail.com" class="btn btn-ghost" data-i18n="hero_btn_contact">Get in Touch</a>
+        <a href="Omer_Akkus_CV_En.pdf" class="btn btn-ghost" target="_blank" rel="noopener" data-i18n="hero_btn_cv" data-cv-link>Download CV</a>
       </div>
       <div class="hero-socials">
-        <a href="tel:+905343565487" title="+90 534 356 54 87" aria-label="Telefon">
+        <a href="tel:+905343565487" title="+90 534 356 54 87" aria-label="Phone" data-i18n-aria-label="aria_phone">
           <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.05-.24c1.16.39 2.4.6 3.66.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.27.21 2.5.6 3.66a1 1 0 0 1-.24 1.05l-2.24 2.08z"/></svg>
         </a>
         <a href="mailto:akkusomer156@gmail.com" title="akkusomer156@gmail.com" aria-label="Gmail">
           <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5v2.24z"/></svg>
         </a>
-        <a href="https://linkedin.com/in/ömer-akkuş-79a764232" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <a href="https://linkedin.com/in/%C3%B6mer-akku%C5%9F-79a764232" target="_blank" rel="noopener" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V10.5H5.67v7.84h2.67zM7 9.28a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zm11.34 9.06v-4.3c0-2.3-1.23-3.37-2.87-3.37a2.48 2.48 0 0 0-2.25 1.24V10.5h-2.67c.04.76 0 7.84 0 7.84h2.67v-4.38c0-.24.02-.48.09-.65.19-.48.63-.98 1.36-.98.96 0 1.34.73 1.34 1.8v4.21h2.33z"/></svg>
         </a>
         <a href="https://github.com/akkusomer1" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.05.78 2.12v3.14c0 .31.21.67.8.56 4.56-1.52 7.85-5.83 7.85-10.91C23.5 5.65 18.35.5 12 .5z"/></svg>
         </a>
       </div>
-  
     </div>
     <div class="hero-photo">
-      <img src="17758204641.png" alt="Ömer Akkuş">
+      <img src="17758204641.png" alt="Ömer Akkuş" data-i18n-alt="hero_alt">
     </div>
   </div>
 </section>
@@ -243,8 +252,8 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
-    <div class="section-label">Uzmanlık Alanları <span style="color:var(--accent2);margin:0 .35rem">✦</span> <span style="text-transform:none;letter-spacing:normal;font-weight:400">Listelenen teknolojiler, geliştirdiğim projelerde aktif olarak kullandığım ve production deneyimine sahip olduğum araçlardır.</span></div>
-    <h2>Teknik Beceriler</h2>
+    <div class="section-label" data-i18n-html="skills_label">Areas of Expertise <span style="color:var(--accent2);margin:0 .35rem">✦</span> <span style="text-transform:none;letter-spacing:normal;font-weight:400">The technologies listed here are the tools I actively use in the projects I build and have production experience with.</span></div>
+    <h2 data-i18n="skills_heading">Technical Skills</h2>
     <div class="skills-grid">
       <div class="skill-card">
         <div class="skill-card-title">⚙ Backend / .NET</div>
@@ -307,8 +316,8 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
 <!-- EXPERIENCE -->
 <section id="experience" style="background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="section-inner">
-    <div class="section-label">Kariyer</div>
-    <h2>İş Deneyimi</h2>
+    <div class="section-label" data-i18n="experience_label">Career</div>
+    <h2 data-i18n="experience_heading">Work Experience</h2>
     <div class="exp-list">
 
       <div class="exp-item">
@@ -318,13 +327,13 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
         </div>
         <div>
           <div class="exp-title">Backend Developer</div>
-          <div class="exp-loc">İstanbul, Türkiye · Tam Zamanlı</div>
+          <div class="exp-loc" data-i18n="exp1_loc">Istanbul, Türkiye · Full-Time</div>
           <ul class="exp-bullets">
-            <li>Kurumsal antrepo ve lojistik yönetim platformunun tüm backend mimarisini tasarladım ve geliştirdim</li>
-            <li>Akıllı Fatura Otomasyon sistemiyle muhasebe iş yükü %95 azaltıldı; fatura işleme süresi 3–5 dakikadan saniyelere indi</li>
-            <li>myBati Talep & Ticket Platformu ile tüm departmanlarda talep takibi %100 dijitalleşti, çözüm süreleri %40 kısaldı</li>
-            <li>Magellan monolitik ERP'yi mikroservis mimarisine dönüştürme sürecinde aktif rol aldım; Ocelot, JWT, RabbitMQ, Redis entegrasyonları</li>
-            <li>Docker container'lar ile ortam bağımsız deployment; Azure DevOps CI/CD pipeline'ları kuruldu</li>
+            <li data-i18n="exp1_b1">Designed and developed the entire backend architecture of the corporate bonded warehouse and logistics management platform</li>
+            <li data-i18n="exp1_b2">Reduced the accounting workload by 95% with the Smart Invoice Automation system; invoice processing time dropped from 3–5 minutes to seconds</li>
+            <li data-i18n="exp1_b3">With the myBati Request & Ticket Platform, request tracking became 100% digital across all departments, and resolution times decreased by 40%</li>
+            <li data-i18n="exp1_b4">Played an active role in transforming the monolithic Magellan ERP into a microservice architecture; Ocelot, JWT, RabbitMQ, and Redis integrations</li>
+            <li data-i18n="exp1_b5">Environment-independent deployment with Docker containers; Azure DevOps CI/CD pipelines were established</li>
           </ul>
         </div>
       </div>
@@ -336,13 +345,13 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
         </div>
         <div>
           <div class="exp-title">Backend Developer</div>
-          <div class="exp-loc">Uzaktan · Proje Bazlı</div>
+          <div class="exp-loc" data-i18n="exp2_loc">Remote · Project-Based</div>
           <ul class="exp-bullets">
-            <li>Stripe, Google Pay ve PayPal entegrasyonlu, tedarikçi API üzerinden milyonlarca ürün senkronizasyonu yapan dropshipping platformu (ShopInFact) geliştirdim — <em>detaylar Öne Çıkan Projeler bölümünde</em></li>
-            <li>Google OAuth + internal üyelik ile kimlik doğrulama altyapısı; NLog tabanlı merkezi loglama sistemi kurdum</li>
-            <li>Sipariş ve fatura akışlarını KDV, iskonto, çoklu döviz, cari bakiye ve stok mutasyonlarını tek transaction içinde yöneten muhasebe tutarlılığı garantili domain backend kurgusu (Finance &amp; Pre-Accounting Management System) geliştirdim</li>
-            <li>MediatR tabanlı command/query ayrımı, repository + unit of work pattern ve API versioning ile sürdürülebilir ve entegrasyon dostu RESTful platform mimarisi kurdum</li>
-            <li>Soft delete, audit trail ve query filter mekanizmalarıyla sistemi izlenebilir ve denetlenebilir hale getirdim</li>
+            <li data-i18n-html="exp2_b1">Developed a dropshipping platform (ShopInFact) with Stripe, Google Pay, and PayPal integrations that synchronizes millions of products through a supplier API — <em>details are in the Featured Projects section</em></li>
+            <li data-i18n="exp2_b2">Built the authentication infrastructure with Google OAuth + internal membership and established an NLog-based centralized logging system</li>
+            <li data-i18n="exp2_b3">Developed a domain backend architecture with guaranteed accounting consistency (Finance & Pre-Accounting Management System) that manages order and invoice flows, VAT, discounts, multiple currencies, current balances, and stock mutations within a single transaction</li>
+            <li data-i18n="exp2_b4">Built a sustainable and integration-friendly RESTful platform architecture with MediatR-based command/query separation, repository + unit of work pattern, and API versioning</li>
+            <li data-i18n="exp2_b5">Made the system traceable and auditable through soft delete, audit trail, and query filter mechanisms</li>
           </ul>
         </div>
       </div>
@@ -354,13 +363,13 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
         </div>
         <div>
           <div class="exp-title">Backend Developer</div>
-          <div class="exp-loc">İstanbul, Türkiye · Tam Zamanlı</div>
+          <div class="exp-loc" data-i18n="exp3_loc">Istanbul, Türkiye · Full-Time</div>
           <ul class="exp-bullets">
-            <li>Poliçe, taksit planları, yenileme döngüsü ve doküman akışlarını tek transaction'da yöneten portföy merkezli backoffice platformu (Barış Insurance) geliştirdim; inheritance tabanlı ürün modeli ile domain genişletilebilirliğini sağladım</li>
-            <li>SOAP/XML tabanlı çoklu sigorta şirketi entegrasyonları, subject-action seviyesinde granular yetkilendirme matrisi ve çift veritabanı (SQL Server & PostgreSQL) desteği geliştirdim</li>
-            <li>Hangfire ile kural bazlı job orchestration ve SignalR ile gerçek zamanlı event akışları kurarak süreçleri otomasyon odaklı hale getirdim; transaction seviyesinde değişiklik izleme ile denetim kabiliyeti sağladım</li>
-            <li>Kurs, içerik ve kullanıcı ilerleme yönetimini kapsayan dijital öğrenme platformunun (Düşyeri) backend mimarisini geliştirdim; dosya yükleme, kategori yönetimi ve kullanıcı bazlı erişim kontrolü altyapısını kurguladım</li>
-            <li>.NET Core tabanlı katmanlı mimari ve Clean Architecture prensipleriyle kod tabanını yapılandırdım; EF Core, Dapper ve T-SQL ile yüksek performanslı veri erişim katmanları tasarladım</li>
+            <li data-i18n="exp3_b1">Developed a portfolio-centered back-office platform (Barış Insurance) that manages policies, installment plans, renewal cycles, and document flows within a single transaction; enabled domain extensibility with an inheritance-based product model</li>
+            <li data-i18n="exp3_b2">Developed SOAP/XML-based multi-insurance company integrations, a granular authorization matrix at the subject-action level, and dual database support (SQL Server & PostgreSQL)</li>
+            <li data-i18n="exp3_b3">Established rule-based job orchestration with Hangfire and real-time event flows with SignalR, making processes automation-focused; provided auditing capability with transaction-level change tracking</li>
+            <li data-i18n="exp3_b4">Developed the backend architecture of the digital learning platform (Düşyeri), covering course, content, and user progress management; designed the infrastructure for file uploads, category management, and user-based access control</li>
+            <li data-i18n="exp3_b5">Structured the codebase with .NET Core-based layered architecture and Clean Architecture principles; designed high-performance data access layers with EF Core, Dapper, and T-SQL</li>
           </ul>
         </div>
       </div>
@@ -371,12 +380,12 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
           <div class="exp-company">Self Employed</div>
         </div>
         <div>
-          <div class="exp-title">Software Developer (Self-Directed Projects)</div>
-          <div class="exp-loc">Kendi İşim · 1 yıl 3 ay</div>
+          <div class="exp-title" data-i18n="exp4_title">Software Developer (Self-Directed Projects)</div>
+          <div class="exp-loc" data-i18n="exp4_loc">My Own Business · 1 year 3 months</div>
           <ul class="exp-bullets">
-            <li>Blog, reklam yönetim sistemi ve e-ticaret benzeri uygulamalar dahil birden fazla backend projesini .NET Core tabanlı çok katmanlı mimari ve Clean Architecture prensipleriyle sıfırdan geliştirdim; API tasarımı, veri modelleme ve iş mantığı katmanlarını uçtan uca kurguladım</li>
-            <li>SignalR ile gerçek zamanlı çift yönlü iletişim sistemi (chat server &amp; client) hayata geçirerek event-driven mimari ve WebSocket protokolü üzerine hands-on deneyim kazandım</li>
-            <li>EF Core, Dapper ve SQL Server ile veri erişim katmanları tasarladım; RESTful API'leri MVC tabanlı frontend uygulamalarla entegre ederek sonraki dönemdeki kurumsal projelerin mimari temelini oluşturdum</li>
+            <li data-i18n="exp4_b1">Developed multiple backend projects from scratch, including blog, advertising management system, and e-commerce-like applications, with .NET Core-based multi-layered architecture and Clean Architecture principles; designed the API, data modeling, and business logic layers end to end</li>
+            <li data-i18n="exp4_b2">Implemented a real-time bidirectional communication system (chat server & client) with SignalR and gained hands-on experience in event-driven architecture and the WebSocket protocol</li>
+            <li data-i18n="exp4_b3">Designed data access layers with EF Core, Dapper, and SQL Server; integrated RESTful APIs with MVC-based frontend applications and built the architectural foundation for later corporate projects</li>
           </ul>
         </div>
       </div>
@@ -388,30 +397,30 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner">
-    <div class="section-label">Çalışmalar</div>
-    <h2>Öne Çıkan Projeler</h2>
+    <div class="section-label" data-i18n="projects_label">Work</div>
+    <h2 data-i18n="projects_heading">Featured Projects</h2>
     <div class="proj-grid">
 
       <div class="proj-card">
         <div class="proj-header">
           <div class="proj-header-left">
             <span class="proj-icon-code">&lt;/&gt;</span>
-            <div class="proj-name">Kurumsal Antrepo & Lojistik Yönetim Platformu</div>
+            <div class="proj-name" data-i18n="proj1_name">Corporate Bonded Warehouse & Logistics Management Platform</div>
           </div>
           <div class="proj-header-right">
-            <span class="proj-badge-active">Uçtan Uca (Tek Geliştirici)</span>
+            <span class="proj-badge-active" data-i18n="badge_solo">End-to-End (Solo Developer)</span>
             <span class="proj-date">Şubat 2026</span>
           </div>
         </div>
-        <div class="proj-summary">Antrepo, lojistik ve finans operasyonlarını uçtan uca yöneten, yüksek hacimli işlemleri destekleyen kurumsal yazılım platformu.</div>
+        <div class="proj-summary" data-i18n="proj1_summary">Corporate software platform that manages warehouse, logistics, and finance operations end to end and supports high-volume transactions.</div>
         <button class="proj-toggle" aria-expanded="false" onclick="toggleProj(this)">
-          <span class="toggle-label">Detayları Gör</span>
+          <span class="toggle-label">View Details</span>
           <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
         </button>
         <div class="proj-collapse">
-        <div class="proj-desc">Antrepo ve serbest depo operasyonlarında parçalı ilerleyen stok, beyan ve finans süreçlerini tek bir tutarlı domain modeli altında birleştiren, operasyonel gerçekliği merkeze alan backend mimarisini kurguladım.<br><br>Yaklaşımın temelinde, sahadaki fiziksel palet hareketleri ile sistemdeki kayıtlar arasındaki senkronizasyonu kayıpsız sağlamak vardı; palet hiyerarşisi, lokasyon kapasitesi ve çok boyutlu ölçüm dağılımlarını matematiksel olarak normalize ederek deterministik bir stok modeli oluşturdum.<br><br>El terminali ve barkod akışlarını merkezi servislerle entegre ederek veri üretim noktası ile iş kuralı katmanı arasına dijital bir kontrol mekanizması yerleştirdim; operasyonel hız artarken manuel hata payını kritik seviyede düşürdüm.<br><br>Yüksek hacimli operasyonlarda ORM sınırlarını bilinçli olarak esnetip hibrit veri erişim ve server-side işleme stratejileriyle performansı optimize ederken, çok adımlı süreçlerde transaction kurgusu ile veri bütünlüğünü garanti altına aldım.<br><br>Dinamik tarife motorunu; kademeli fiyatlandırma, çoklu para birimi ve vergi senaryolarını yöneten algoritmik bir finansal katman olarak modelledim ve stok hareketleri ile faturalama arasında doğrudan bir mali doğruluk hattı kurdum.<br><br>Doküman, beyan ve raporlama süreçlerini uçtan uca dijitalleştirerek sistemi yalnızca operasyon yöneten değil, finansal görünürlük ve denetlenebilirlik sağlayan bir karar destek platformuna dönüştürdüm.<br><br><strong style="color:var(--text);font-style:normal">Teknik Katkılar ve Sistem Tasarımı:</strong><br><br>▸ Yüksek hacimli depo operasyonlarını desteklemek için performans odaklı veri erişim stratejileri ve sorgu optimizasyonları geliştirdim<br>▸ Saha operasyonları, stok yönetimi ve finansal süreçler arasında veri tutarlılığını sağlayan backend iş kuralı katmanını tasarladım<br>▸ Terminal, barkod ve merkezi sistemler arasında veri akışını yöneten servis tabanlı entegrasyon yapısı kurdum<br>▸ Büyük veri setleri üzerinde çalışan operasyon ekranları için server-side işleme ve verimli veri filtreleme mekanizmaları geliştirdim<br>▸ Çok adımlı iş akışlarında hata toleranslı ve güvenilir işlem yönetimi sağlayan kontrol ve validasyon mekanizmaları kurguladım<br>▸ Operasyonel süreçleri destekleyen raporlama ve veri üretim altyapısını geliştirerek sistemin karar destek yetkinliğini artırdım</div>
-        <div class="proj-metric">↓ Daha önce dış kaynaktan sağlanan sistem, şirket içinde sıfırdan geliştirilerek dışa bağımlılık ortadan kaldırıldı ve operasyonel verimlilik artırıldı.</div>
-        <div class="proj-metric">↓ Stok–saha–finans tek domain modeli · Manuel hata payı kritik seviyede azaldı</div>
+        <div class="proj-desc" data-i18n-html="proj1_desc">I designed a backend architecture centered on operational reality, unifying fragmented stock, declaration, and financial processes in bonded warehouse and free storage operations under a single consistent domain model.<br><br>At the core of this approach was ensuring lossless synchronization between physical pallet movements in the field and records in the system; I built a deterministic stock model by mathematically normalizing pallet hierarchy, location capacity, and multidimensional measurement distributions.<br><br>By integrating handheld terminal and barcode workflows with central services, I placed a digital control mechanism between the point of data generation and the business rules layer; while operational speed increased, I reduced the margin of manual error to a critical minimum.<br><br>In high-volume operations, I intentionally stretched ORM boundaries and optimized performance through hybrid data access and server-side processing strategies, while guaranteeing data integrity in multi-step processes with transactional design.<br><br>I modeled the dynamic tariff engine as an algorithmic financial layer managing tiered pricing, multiple currencies, and tax scenarios, and established a direct financial accuracy line between stock movements and invoicing.<br><br>By digitizing document, declaration, and reporting processes end to end, I transformed the system into not only an operations management tool but also a decision support platform providing financial visibility and auditability.<br><br><strong style="color:var(--text);font-style:normal">Technical Contributions and System Design:</strong><br><br>▸ Developed performance-oriented data access strategies and query optimizations to support high-volume warehouse operations<br>▸ Designed the backend business rules layer that ensures data consistency across field operations, stock management, and financial processes<br>▸ Built a service-based integration structure that manages data flow among terminals, barcode systems, and central systems<br>▸ Developed server-side processing and efficient data filtering mechanisms for operational screens working on large data sets<br>▸ Designed control and validation mechanisms that provide fault-tolerant and reliable transaction management in multi-step workflows<br>▸ Improved the system's decision support capability by developing the reporting and data generation infrastructure that supports operational processes</div>
+        <div class="proj-metric" data-i18n="proj1_metric1">↓ The previously outsourced system was rebuilt from scratch in-house, eliminating external dependency and increasing operational efficiency.</div>
+        <div class="proj-metric" data-i18n="proj1_metric2">↓ Stock–field–finance unified domain model · The margin of manual error was reduced to a critical minimum</div>
         <div class="proj-tech">
           <span>ASP.NET MVC</span><span>EF Core</span><span>T-SQL</span><span>RabbitMQ</span><span>SignalR</span><span>JWT</span><span>Docker</span><span>Domain-Driven Design</span>
         </div>
@@ -420,9 +429,9 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
             <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
             batiantrepo.com
           </a>
-          <span class="proj-closed-note">
+          <span class="proj-closed-note" data-i18n-html="closed_note">
             <svg viewBox="0 0 24 24"><path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 0 1 6.2 0v2z"/></svg>
-            Proje, şirket içi operasyonları yöneten kapalı bir sistemdir — dış erişime açık değildir.
+            This project is a closed internal system that manages company operations — it is not publicly accessible.
           </span>
         </div>
         </div>
@@ -432,22 +441,22 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
         <div class="proj-header">
           <div class="proj-header-left">
             <span class="proj-icon-code">&lt;/&gt;</span>
-            <div class="proj-name">Akıllı Fatura Yönetim & Muhasebe Otomasyon Sistemi</div>
+            <div class="proj-name" data-i18n="proj2_name">Smart Invoice Management & Accounting Automation System</div>
           </div>
           <div class="proj-header-right">
-            <span class="proj-badge-active">Uçtan Uca (Tek Geliştirici)</span>
+            <span class="proj-badge-active" data-i18n="badge_solo">End-to-End (Solo Developer)</span>
             <span class="proj-date">Eylül 2025</span>
           </div>
         </div>
-        <div class="proj-summary">Gider faturalarını operasyon ve muhasebe sistemleriyle entegre ederek uçtan uca otomatik işleyen kurumsal finans platformu geliştirdim.</div>
+        <div class="proj-summary" data-i18n="proj2_summary">I developed an end-to-end automated corporate finance platform by integrating expense invoices with operational and accounting systems.</div>
         <button class="proj-toggle" aria-expanded="false" onclick="toggleProj(this)">
-          <span class="toggle-label">Detayları Gör</span>
+          <span class="toggle-label">View Details</span>
           <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
         </button>
         <div class="proj-collapse">
-        <div class="proj-desc">Gider faturalarının operasyon ve muhasebe sistemleriyle entegre, kural bazlı ve otomatik işlenmesini sağlayan Akıllı Fatura Yönetim ve Muhasebe Otomasyon altyapısını tasarladım ve geliştirdim.<br><br>Sistem; konteyner numarası, konşimento ve pozisyon bilgileri üzerinden faturaları arka planda analiz ederek kalem bazlı otomatik eşleştirme (yıldızlama) algoritması ile doğru operasyon kayıtlarını tespit eder ve tam eşleşme durumunda faturayı insan müdahalesi olmadan otomatik olarak muhasebeleştirir.<br><br>Kısmi veya hatalı eşleşmelerde kontrollü yönlendirme akışı kurgulanarak sorumluluk ilgili operasyon personeline devredilir ve düzeltme sonrası sistem yeniden doğrulama yaparak süreci tamamlar.<br><br>Önceki yapıda bir faturanın manuel muhasebe girişi ortalama 3–5 dakika sürerken, geliştirilen otomasyon sayesinde faturalar saniyeler içerisinde taranıp ilişkilendirilmekte ve otomatik kayda alınmaktadır.<br><br>Bu dönüşüm ile muhasebe departmanındaki operasyonel iş yükü yaklaşık %95 oranında azaltılmış, manuel mail trafiği ve tekrar eden veri girişleri ortadan kaldırılmış, hata riski minimize edilmiş ve süreç uçtan uca izlenebilir, denetlenebilir ve ölçeklenebilir bir yapıya kavuşturulmuştur.<br><br>Sistem, kural motoru yaklaşımı ve otomatik validasyon mekanizmaları ile yüksek hacimli fatura operasyonlarını performanslı ve güvenilir şekilde yönetmektedir.<br><br><strong style="color:var(--text);font-style:normal">Teknik Katkılar ve Sistem Tasarımı:</strong><br><br>▸ Asenkron ve yüksek hacimli işlem gerektiren fatura işleme süreçlerini RabbitMQ ve .NET Worker Service mimarisi ile yeniden tasarladım<br>▸ UI ile arka plan servisleri arasındaki orkestrasyonu kurarak uzun süren işlemleri web katmanından ayrıştırdım<br>▸ Logo kaynaklı e-fatura XML verilerini parse ederek operasyon ve finans domainleriyle ilişkilendiren veri işleme altyapısını geliştirdim<br>▸ Fatura kalemleri ile operasyon kayıtlarını eşleştiren kural bazlı otomatik eşleştirme (matching engine) geliştirdim<br>▸ Redis tabanlı süreç takibi ve loglama mekanizmaları ile arka plan işlemlerinin izlenebilirliğini sağladım<br>▸ Logo ERP ile operasyonel sistem arasında çift yönlü finans entegrasyonu geliştirerek veri tutarlılığını garanti altına aldım<br>▸ Yüksek hacimli fatura operasyonlarını ölçeklenebilir ve performanslı şekilde yönetebilecek sistem mimarisi kurguladım<br>▸ Manuel muhasebe giriş süresini dakika seviyesinden saniyelere indirerek süreçleri %95 oranında optimize ettim</div>
-        <div class="proj-metric">↓ Manuel muhasebe giriş süresini 3–5 dakikadan saniyelere indirerek süreç hızını önemli ölçüde artırdım</div>
-        <div class="proj-metric">↓ Muhasebe operasyonlarındaki manuel iş yükünü yaklaşık %95 oranında azaltarak hata riskini minimize ettim</div>
+        <div class="proj-desc" data-i18n-html="proj2_desc">I designed and developed the Smart Invoice Management and Accounting Automation infrastructure that enables expense invoices to be processed automatically, rule-based, and integrated with operational and accounting systems.<br><br>The system analyzes invoices in the background using container numbers, bills of lading, and position information, identifies the correct operational records with a line-item automatic matching algorithm, and automatically posts the invoice without human intervention when a full match is found.<br><br>For partial or incorrect matches, I designed a controlled routing flow that transfers responsibility to the relevant operations personnel, and after correction, the system revalidates and completes the process.<br><br>Where manual accounting entry for a single invoice previously took an average of 3–5 minutes, with the developed automation, invoices are scanned, associated, and recorded automatically within seconds.<br><br>With this transformation, the operational workload in the accounting department was reduced by approximately 95%, manual email traffic and repetitive data entry were eliminated, the risk of error was minimized, and the process became end-to-end traceable, auditable, and scalable.<br><br>The system manages high-volume invoice operations efficiently and reliably through a rules engine approach and automatic validation mechanisms.<br><br><strong style="color:var(--text);font-style:normal">Technical Contributions and System Design:</strong><br><br>▸ Redesigned invoice processing workflows that require asynchronous and high-volume processing using RabbitMQ and .NET Worker Service architecture<br>▸ Established orchestration between the UI and background services, separating long-running processes from the web layer<br>▸ Developed the data processing infrastructure that parses Logo-origin e-invoice XML data and relates it to operational and financial domains<br>▸ Developed a rule-based automatic matching engine that matches invoice lines with operational records<br>▸ Ensured observability of background processes through Redis-based process tracking and logging mechanisms<br>▸ Guaranteed data consistency by developing bidirectional finance integration between Logo ERP and the operational system<br>▸ Designed a system architecture capable of managing high-volume invoice operations in a scalable and high-performance manner<br>▸ Optimized processes by 95% by reducing manual accounting entry time from minutes to seconds</div>
+        <div class="proj-metric" data-i18n="proj2_metric1">↓ I significantly increased process speed by reducing manual accounting entry time from 3–5 minutes to seconds</div>
+        <div class="proj-metric" data-i18n="proj2_metric2">↓ I minimized the risk of error by reducing the manual workload in accounting operations by approximately 95%</div>
         <div class="proj-tech">
           <span>.NET Core</span><span>Worker Service</span><span>RabbitMQ</span><span>Redis</span><span>Dapper</span><span>EF Core</span><span>Logo ERP</span><span>XML Processing</span><span>DDD</span>
         </div>
@@ -460,9 +469,9 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
             <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
             crm.magellansoft.com
           </a>
-          <span class="proj-closed-note">
+          <span class="proj-closed-note" data-i18n-html="closed_note">
             <svg viewBox="0 0 24 24"><path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 0 1 6.2 0v2z"/></svg>
-            Proje, şirket içi operasyonları yöneten kapalı bir sistemdir — dış erişime açık değildir.
+            This project is a closed internal system that manages company operations — it is not publicly accessible.
           </span>
         </div>
         </div>
@@ -472,22 +481,22 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
         <div class="proj-header">
           <div class="proj-header-left">
             <span class="proj-icon-code">&lt;/&gt;</span>
-            <div class="proj-name">myBati — Talep, Ticket & Bildirim Yönetim Platformu</div>
+            <div class="proj-name" data-i18n="proj3_name">myBati — Request, Ticket & Notification Management Platform</div>
           </div>
           <div class="proj-header-right">
-            <span class="proj-badge-active">Uçtan Uca (Tek Geliştirici)</span>
+            <span class="proj-badge-active" data-i18n="badge_solo">End-to-End (Solo Developer)</span>
             <span class="proj-date">Ocak 2025</span>
           </div>
         </div>
-        <div class="proj-summary">Outlook entegrasyonu ve event-driven mimari ile çalışan, kurumsal talep, ticket ve bildirim süreçlerini uçtan uca yöneten merkezi platform geliştirdim.</div>
+        <div class="proj-summary" data-i18n="proj3_summary">I developed a centralized platform powered by Outlook integration and event-driven architecture that manages corporate request, ticket, and notification processes end to end.</div>
         <button class="proj-toggle" aria-expanded="false" onclick="toggleProj(this)">
-          <span class="toggle-label">Detayları Gör</span>
+          <span class="toggle-label">View Details</span>
           <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
         </button>
         <div class="proj-collapse">
-        <div class="proj-desc">Kurumsal ölçekte dağınık ve izlenemeyen talep süreçlerini ortadan kaldırmak için, Outlook ile çift yönlü senkron çalışan ve e-postaları doğrudan ticket yaşam döngüsüne dahil eden merkezi bir platform kurguladım.<br><br>Mailbox'ı Microsoft Graph üzerinden sürekli izleyerek gelen e-postaları otomatik ticket kaydına dönüştüren; IT, Finans, İK ve Satın Alma dahil tüm hizmet departmanlarını tek omurgada birleştiren kurumsal bir Talep ve Görev Yönetim Platformu inşa ettim.<br><br>Microsoft Graph entegrasyonu ile mail trafiği operasyonel iş akışına dönüştürülürken, event-driven mimari sayesinde kullanıcı etkileşimleri ile I/O yoğun süreçler birbirinden ayrıştırdım.<br><br>Outlook ile çift yönlü senkron çalışan bu yapı içerisinde RabbitMQ + Worker Service mimarisi kullanarak bildirim, mail akışları, SLA kontrolü ve kullanıcı senkronizasyonunu web request hattından tamamen izole ettim.<br><br>E-posta içeriklerini (HTML body, reply chain ve subject) ayrıştırarak yeni ticket veya mevcut ticket yanıtı olarak işleyen akıllı mail parsing altyapısını geliştirdim.<br><br>Ticket bazlı erişim kontrolü ve rol tabanlı yetkilendirme mekanizmaları ile kullanıcıların yalnızca yetkili oldukları taleplere erişebilmesini sağlayan güvenlik katmanını tasarladım.<br><br>Harici kimlik doğrulama servisinden gelen JWT token'larını doğrulayıp uygulama içi rol ve yetki modeline dönüştüren kimlik entegrasyon yapısını kurguladım.<br><br>NLog tabanlı merkezi loglama altyapısı ile sistem davranışlarını izlenebilir hale getirerek hata analizi ve operasyonel takibi kolaylaştırdım.<br><br>Bu sayede ticket yaşam döngüsünü ölçeklenebilir, operasyonel olarak izlenebilir ve sürdürülebilir hale getirirken; Task modülü, KPI bazlı raporlama ve ERP entegrasyonu ile tüm süreçleri uçtan uca ölçülebilir bir yapıya dönüştürdüm.<br><br>Sonuç olarak tüm hizmet departmanları tek bir domain altında birleşirken, karar alma ve operasyonel görünürlük veri odaklı hale getirildi.<br><br><strong style="color:var(--text);font-style:normal">Teknik Katkılar ve Sistem Tasarımı:</strong><br><br>▸ Mail tabanlı ticket ingestion sürecini Microsoft Graph API ile entegre ederek e-posta → ticket dönüşümünü otomatik hale getirdim<br>▸ RabbitMQ ve Worker Service mimarisi ile mail, bildirim ve kullanıcı senkronizasyon süreçlerini asenkronlaştırarak web katmanından ayrıştırdım<br>▸ Web uygulaması ile arka plan servisleri arasında event-driven iletişim modeli kurarak sistemin ölçeklenebilirliğini artırdım<br>▸ Dapper ve stored procedure tabanlı veri erişim stratejileri ile yüksek hacimli dashboard ve raporlama sorgularını optimize ettim<br>▸ Redis tabanlı token ve oturum yönetimi ile kullanıcı deneyimini iyileştiren merkezi cache yapısı kurdum<br>▸ JWT doğrulama ve cookie tabanlı kimlik yönetimini birleştirerek güvenli ve esnek bir authentication/authorization modeli geliştirdim<br>▸ FTP tabanlı dosya yönetimi ile attachment ve inline görsellerin merkezi ve performanslı şekilde saklanmasını sağladım<br>▸ Worker servislerini bağımsız görevler halinde kurgulayarak mail işleme, notification ve kullanıcı senkronizasyon süreçlerini ayrıştırdım<br>▸ NLog ile veritabanına yazılan loglar üzerinden sistemin gözlemlenebilirliğini ve hata izlenebilirliğini artırdım</div>
-        <div class="proj-metric">↓ Tüm departmanlarda talep süreçlerini %100 dijitalleştirerek manuel e-posta takibini ortadan kaldırdım ve ortalama çözüm sürelerini %40 oranında iyileştirdim</div>
-        <div class="proj-metric">↓ Event-driven mimari ile I/O yükünü web katmanından ayırarak performans ve ölçeklenebilirliği artırdım</div>
+        <div class="proj-desc" data-i18n-html="proj3_desc">To eliminate scattered and untraceable request processes at the enterprise scale, I designed a centralized platform that synchronizes bidirectionally with Outlook and directly incorporates emails into the ticket lifecycle.<br><br>By continuously monitoring the mailbox through Microsoft Graph, I built a corporate Request and Task Management Platform that automatically converts incoming emails into ticket records and unifies all service departments, including IT, Finance, HR, and Procurement, on a single backbone.<br><br>While Microsoft Graph integration transformed email traffic into an operational workflow, I separated user interactions from I/O-intensive processes through event-driven architecture.<br><br>Within this structure that works bidirectionally with Outlook, I completely isolated notification, mail flows, SLA control, and user synchronization from the web request pipeline using RabbitMQ + Worker Service architecture.<br><br>I developed an intelligent mail parsing infrastructure that separates email content (HTML body, reply chain, and subject) and processes it either as a new ticket or as a response to an existing ticket.<br><br>I designed the security layer that ensures users can access only the requests they are authorized to see through ticket-based access control and role-based authorization mechanisms.<br><br>I designed an identity integration structure that validates JWT tokens from the external authentication service and transforms them into the application's internal role and permission model.<br><br>I made system behaviors observable and facilitated error analysis and operational tracking with an NLog-based centralized logging infrastructure.<br><br>As a result, while I made the ticket lifecycle scalable, operationally observable, and sustainable, I transformed all processes into an end-to-end measurable structure with the Task module, KPI-based reporting, and ERP integration.<br><br>Ultimately, all service departments were unified under a single domain, and decision-making and operational visibility became data-driven.<br><br><strong style="color:var(--text);font-style:normal">Technical Contributions and System Design:</strong><br><br>▸ Automated email → ticket conversion by integrating the mail-based ticket ingestion process with the Microsoft Graph API<br>▸ Asynchronized mail, notification, and user synchronization processes with RabbitMQ and Worker Service architecture, separating them from the web layer<br>▸ Increased system scalability by establishing an event-driven communication model between the web application and background services<br>▸ Optimized high-volume dashboard and reporting queries with Dapper and stored procedure-based data access strategies<br>▸ Built a centralized cache structure with Redis-based token and session management that improves user experience<br>▸ Developed a secure and flexible authentication/authorization model by combining JWT validation and cookie-based identity management<br>▸ Ensured centralized and performant storage of attachments and inline images with FTP-based file management<br>▸ Separated mail processing, notification, and user synchronization processes by designing worker services as independent tasks<br>▸ Increased system observability and error traceability through logs written to the database with NLog</div>
+        <div class="proj-metric" data-i18n="proj3_metric1">↓ I eliminated manual email tracking by digitizing request processes 100% across all departments and improved average resolution times by 40%</div>
+        <div class="proj-metric" data-i18n="proj3_metric2">↓ I increased performance and scalability by separating I/O load from the web layer with event-driven architecture</div>
         <div class="proj-tech">
           <span>ASP.NET Core MVC</span><span>Microsoft Graph API</span><span>.NET Worker Services</span><span>RabbitMQ</span><span>Redis</span><span>Dapper</span><span>SQL Server</span><span>SignalR</span><span>JWT</span><span>NLog</span><span>Docker</span>
         </div>
@@ -496,9 +505,9 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
             <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
             myt.magellansoft.com
           </a>
-          <span class="proj-closed-note">
+          <span class="proj-closed-note" data-i18n-html="closed_note">
             <svg viewBox="0 0 24 24"><path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 0 1 6.2 0v2z"/></svg>
-            Proje, şirket içi operasyonları yöneten kapalı bir sistemdir — dış erişime açık değildir.
+            This project is a closed internal system that manages company operations — it is not publicly accessible.
           </span>
         </div>
         </div>
@@ -508,22 +517,22 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
         <div class="proj-header">
           <div class="proj-header-left">
             <span class="proj-icon-code">&lt;/&gt;</span>
-            <div class="proj-name">Magellan Microservices — ERP Dönüşümü</div>
+            <div class="proj-name" data-i18n="proj4_name">Magellan Microservices — ERP Transformation</div>
           </div>
           <div class="proj-header-right">
-            <span class="proj-badge-team">Takım Geliştirmesi</span>
+            <span class="proj-badge-team" data-i18n="badge_team">Team Development</span>
             <span class="proj-date">Haziran 2024</span>
           </div>
         </div>
-        <div class="proj-summary">Monolitik ERP sistemini mikroservis mimarisine dönüştürerek bağımsız servisler, merkezi gateway ve asenkron iletişim ile ölçeklenebilir bir backend platformu geliştirdim.</div>
+        <div class="proj-summary" data-i18n="proj4_summary">I transformed the monolithic ERP system into a microservice architecture and developed a scalable backend platform with independent services, a centralized gateway, and asynchronous communication.</div>
         <button class="proj-toggle" aria-expanded="false" onclick="toggleProj(this)">
-          <span class="toggle-label">Detayları Gör</span>
+          <span class="toggle-label">View Details</span>
           <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
         </button>
         <div class="proj-collapse">
-        <div class="proj-desc">Şirketin ASP.NET MVC tabanlı, hava/kara/deniz taşımacılığı, muhasebe-finans, CRM ve operasyon modüllerinin tek bir monolitik yapı altında çalıştığı Magellan ERP sistemini mikroservis mimarisine dönüştürme sürecinde aktif rol aldım.<br><br>Domain sınırlarını yeniden tasarlayarak sistemi bağımsız servisler (Identity, UserManagement, HealthCheck vb.) şeklinde ayrıştırdım ve servisler arası iletişimi API Gateway (Ocelot) üzerinden yönettim.<br><br>Kimlik doğrulama ve yetkilendirme süreçlerini merkezi Identity servisi altında JWT tabanlı güvenlik altyapısı ile kurguladım; token üretimi, claim yönetimi ve custom middleware yapıları geliştirdim.<br><br>Servisler arası asenkron iletişim için RabbitMQ entegrasyonu, cache yönetimi için Redis kullanarak performans ve ölçeklenebilirliği artırdım.<br><br>Domain ve tenant bilgisine göre dinamik veri tabanı seçimi yaparak çoklu şirket ve çoklu lokasyon senaryolarını destekleyen bir veri erişim yapısı kurguladım.<br><br>Ortak ihtiyaçları SharedLibraries altında soyutlayarak (DapperDb, ApiResponse, Logging, Validation, Helper katmanları) tekrar eden bağımlılıkları minimize ettim ve kod standardizasyonu sağladım.<br><br>Background işlemler için Worker Service geliştirerek e-posta gönderimi ve doğrulama kodu süreçlerini ana akıştan izole ettim.<br><br>Her servisi Docker container'ları içerisinde çalışacak şekilde yapılandırarak ortam bağımsız deploy edilebilir, izole ve yatay ölçeklenebilir bir altyapı kurdum.<br><br>Serilog ve Elasticsearch entegrasyonu ile merkezi loglama altyapısı kurarak sistemin izlenebilirliğini ve üretim ortamı hata analizini güçlendirdim.<br><br>SQL Server, Redis, RabbitMQ ve servis endpoint'lerini kapsayan HealthCheck altyapısı ile sistem bağımlılıklarını merkezi olarak izlenebilir hale getirdim.<br><br>Polly tabanlı retry ve resilience politikaları ile servisler arası iletişimde hata toleransını artırdım.<br><br>Bu dönüşüm sayesinde sistem; bağımsız versiyonlanabilir, modüler, cloud-ready ve yüksek trafikte performanslı çalışabilecek sürdürülebilir bir mimariye taşındı.<br><br><strong style="color:var(--text);font-style:normal">Teknik Katkılar ve Sistem Tasarımı:</strong><br><br>▸ Monolitik ERP yapıyı domain bazlı ayrıştırarak mikroservis mimarisine uygun servis sınırlarını yeniden tanımladım<br>▸ Ocelot API Gateway ile merkezi routing, authentication boundary ve servis erişim kontrolü sağladım<br>▸ JWT tabanlı kimlik doğrulama ve claim bazlı authorization modeli ile servisler arası güvenli iletişim altyapısı kurdum<br>▸ RabbitMQ ile event-driven asenkron iletişim modeli kurarak servisler arası bağımlılıkları gevşettim<br>▸ Worker Service yapısı ile uzun süren ve I/O yoğun işlemleri request/response hattından ayrıştırdım<br>▸ Redis ile dağıtık cache ve oturum yönetimi sağlayarak performans ve kullanıcı deneyimini iyileştirdim<br>▸ Dapper tabanlı veri erişim katmanı ile performans odaklı ve kontrol edilebilir SQL yönetimi sağladım<br>▸ Serilog ve Elasticsearch ile merkezi loglama altyapısı kurarak sistem gözlemlenebilirliğini artırdım<br>▸ HealthCheck mekanizmaları ile sistem bileşenlerinin canlı durumunu izlenebilir hale getirdim<br>▸ Docker ile servisleri containerize ederek ortam bağımsız, izole ve ölçeklenebilir deployment altyapısı oluşturdum</div>
-        <div class="proj-metric">↓ Monolitik ERP yapıyı mikroservislere dönüştürerek bağımsız deploy ve ölçeklenebilirlik sağladım</div>
-        <div class="proj-metric">↓ RabbitMQ ve Redis ile sistem performansını artırarak yüksek trafikte stabil çalışma sağladım</div>
+        <div class="proj-desc" data-i18n-html="proj4_desc">I played an active role in transforming the company's Magellan ERP system, where air/land/sea transportation, accounting-finance, CRM, and operations modules ran under a single ASP.NET MVC-based monolithic structure, into a microservice architecture.<br><br>By redesigning domain boundaries, I decomposed the system into independent services (Identity, UserManagement, HealthCheck, etc.) and managed inter-service communication through an API Gateway (Ocelot).<br><br>I designed authentication and authorization processes under a centralized Identity service with a JWT-based security infrastructure; I developed token generation, claim management, and custom middleware structures.<br><br>I improved performance and scalability by using RabbitMQ for asynchronous communication among services and Redis for cache management.<br><br>By dynamically selecting the database according to domain and tenant information, I designed a data access structure that supports multi-company and multi-location scenarios.<br><br>By abstracting common needs under SharedLibraries (DapperDb, ApiResponse, Logging, Validation, Helper layers), I minimized recurring dependencies and ensured code standardization.<br><br>I developed Worker Services for background processing and isolated email sending and verification code workflows from the main request flow.<br><br>By structuring each service to run in Docker containers, I established an environment-independent, isolated, and horizontally scalable infrastructure that can be deployed consistently across environments.<br><br>I strengthened observability and production error analysis by establishing a centralized logging infrastructure with Serilog and Elasticsearch integration.<br><br>I made system dependencies centrally observable with a HealthCheck infrastructure covering SQL Server, Redis, RabbitMQ, and service endpoints.<br><br>I improved fault tolerance in inter-service communication through Polly-based retry and resilience policies.<br><br>As a result of this transformation, the system was moved to a sustainable architecture that is independently versionable, modular, cloud-ready, and capable of performing under high traffic.<br><br><strong style="color:var(--text);font-style:normal">Technical Contributions and System Design:</strong><br><br>▸ Redefined service boundaries suitable for microservice architecture by separating the monolithic ERP structure on a domain basis<br>▸ Provided centralized routing, authentication boundary, and service access control with Ocelot API Gateway<br>▸ Established a secure inter-service communication infrastructure with JWT-based authentication and a claim-based authorization model<br>▸ Relaxed inter-service dependencies by establishing an event-driven asynchronous communication model with RabbitMQ<br>▸ Separated long-running and I/O-intensive processes from the request/response line with the Worker Service structure<br>▸ Improved performance and user experience by providing distributed cache and session management with Redis<br>▸ Provided performance-oriented and controllable SQL management with a Dapper-based data access layer<br>▸ Increased system observability by establishing a centralized logging infrastructure with Serilog and Elasticsearch<br>▸ Made the live status of system components observable with HealthCheck mechanisms<br>▸ Built an environment-independent, isolated, and scalable deployment infrastructure by containerizing services with Docker</div>
+        <div class="proj-metric" data-i18n="proj4_metric1">↓ I enabled independent deployment and scalability by transforming the monolithic ERP structure into microservices</div>
+        <div class="proj-metric" data-i18n="proj4_metric2">↓ I improved system performance and achieved stable operation under high traffic with RabbitMQ and Redis</div>
         <div class="proj-tech">
           <span>Microservices</span><span>Ocelot</span><span>JWT</span><span>RabbitMQ</span><span>Redis</span><span>Dapper</span><span>Worker Service</span><span>Serilog</span><span>Elasticsearch</span><span>Polly</span><span>Docker</span><span>SQL Server</span>
         </div>
@@ -536,9 +545,9 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
             <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
             crm.magellansoft.com
           </a>
-          <span class="proj-closed-note">
+          <span class="proj-closed-note" data-i18n-html="closed_note">
             <svg viewBox="0 0 24 24"><path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 0 1 6.2 0v2z"/></svg>
-            Proje, şirket içi operasyonları yöneten kapalı bir sistemdir — dış erişime açık değildir.
+            This project is a closed internal system that manages company operations — it is not publicly accessible.
           </span>
         </div>
         </div>
@@ -548,29 +557,29 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
         <div class="proj-header">
           <div class="proj-header-left">
             <span class="proj-icon-code">&lt;/&gt;</span>
-            <div class="proj-name">ShopInFact — API Tabanlı Dropshipping & E-Ticaret Platformu</div>
+            <div class="proj-name" data-i18n="proj5_name">ShopInFact — API-Based Dropshipping & E-Commerce Platform</div>
           </div>
           <div class="proj-header-right">
-            <span class="proj-badge-active">Uçtan Uca (Tek Geliştirici)</span>
+            <span class="proj-badge-active" data-i18n="badge_solo">End-to-End (Solo Developer)</span>
             <span class="proj-date">Ocak 2024</span>
           </div>
         </div>
-        <div class="proj-summary">Dropshipping ve e-ticaret operasyonlarını uçtan uca otomatikleştiren, tedarikçi entegrasyonu ve çoklu ödeme altyapısına sahip ölçeklenebilir bir e-ticaret backend platformu geliştirdim.</div>
+        <div class="proj-summary" data-i18n="proj5_summary">I developed a scalable e-commerce backend platform that automates dropshipping and e-commerce operations end to end, with supplier integration and a multi-payment infrastructure.</div>
         <button class="proj-toggle" aria-expanded="false" onclick="toggleProj(this)">
-          <span class="toggle-label">Detayları Gör</span>
+          <span class="toggle-label">View Details</span>
           <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
         </button>
         <div class="proj-collapse">
-        <div class="proj-desc">Dropshipping ve e-ticaret operasyonlarını uçtan uca yöneten, .NET Core MVC tabanlı ölçeklenebilir bir e-ticaret platformunun backend mimarisini tasarladım ve geliştirdim. Sistem; tedarikçi API entegrasyonu üzerinden milyonlarca ürünün toplu ve senkronize şekilde sisteme aktarılmasını, siparişlerin otomatik olarak tedarikçiye iletilmesini ve kargo entegrasyonu sayesinde gönderi takibinin gerçek zamanlı yönetilmesini sağlayacak şekilde kurgulandı.<br><br>Stripe ödeme altyapısı ile Google Pay, PayPal ve banka kartı destekli güvenli ödeme akışı tasarlayarak ödeme sonrası otomatik fatura üretimi ve e-posta bildirim süreçlerini entegre ettim. Çoklu para birimi (USD, GBP, EUR) desteği ve IP bazlı lokasyon tespiti ile dinamik döviz seçimi mekanizması geliştirerek global kullanıcı deneyimini optimize ettim.<br><br>Authentication süreçlerinde hem internal üyelik hem Google OAuth entegrasyonu sağlayarak güvenli ve esnek kimlik doğrulama altyapısı kurdum. Ürün arama, filtreleme, sayfalama, kategori bazlı listeleme ve wishlist/sepete ekleme gibi yüksek trafikli işlemleri performans odaklı tasarladım.<br><br>Admin panel üzerinden ürün, SEO ve sipariş yönetimini merkezi hale getirirken; olay bazlı bildirim sistemi ve NLog tabanlı loglama altyapısı ile sistemin izlenebilirliğini ve hata yönetimini güçlendirdim. Bu yapı sayesinde sipariş işleme süreci otomatikleştirilmiş, operasyonel müdahale ihtiyacı minimize edilmiş ve platform global ölçekte ölçeklenebilir bir mimariye kavuşturulmuştur.<br><br>Sipariş oluşturma sürecini RabbitMQ ile asenkronlaştırarak checkout akışı ile operasyonel veri yazım sürecini birbirinden ayrıştırdım.<br><br>Veri yaşam döngüsünü yönetmek için soft delete, audit alanları ve otomatik tarih yönetimi gibi cross-cutting veri yönetim stratejileri uyguladım.<br><br>Tedarikçi API entegrasyonunda token yaşam döngüsü, hata yönetimi ve veri senkronizasyon süreçlerini yöneten entegrasyon katmanı geliştirdim.<br><br>Ödeme sonrası sipariş oluşturma sürecini webhook doğrulaması ve kuyruk tabanlı işleme ile ayrıştırarak güvenli ve idempotent bir order processing akışı kurguladım.<br><br><strong style="color:var(--text);font-style:normal">Teknik Katkılar ve Sistem Tasarımı:</strong><br><br>▸ Katmanlı mimari (Core, Repository, Service, UI) ile business logic'i presentation katmanından ayrıştırdım<br>▸ Stripe webhook entegrasyonu ile ödeme doğrulama sürecini güvenli ve idempotent hale getirdim<br>▸ RabbitMQ ile asenkron sipariş işleme hattı kurarak ödeme ve operasyon süreçlerini gevşek bağlı hale getirdim<br>▸ CJ Dropshipping API entegrasyonu ile ürün, lojistik, sipariş ve tracking süreçlerini yöneten entegrasyon katmanı geliştirdim<br>▸ EF Core + Unit of Work yaklaşımı ile veri erişim katmanında transaction yönetimini merkezi hale getirdim<br>▸ ASP.NET Core Identity ile admin ve müşteri kullanıcı yönetimini güvenli ve esnek şekilde tasarladım<br>▸ Memory cache ve external currency API ile çoklu para birimi ve dinamik fiyatlama altyapısı geliştirdim<br>▸ NLog ile SQL tabanlı merkezi loglama altyapısı kurarak sistemin gözlemlenebilirliğini artırdım<br>▸ Admin panel üzerinden sipariş, ürün, kargo ve içerik yönetimini merkezi hale getiren operasyonel backend süreçleri geliştirdim</div>
-        <div class="proj-metric">↓ Yüksek hacimli ürün verisini tedarikçi API'lerden performanslı şekilde çekip senkronize eden veri işleme altyapısı geliştirdim</div>
-        <div class="proj-metric">↓ Siparişten operasyona uzanan süreci otomatikleştirerek manuel işlem bağımlılığını önemli ölçüde azalttım</div>
+        <div class="proj-desc" data-i18n-html="proj5_desc">I designed and developed the backend architecture of a scalable .NET Core MVC-based e-commerce platform that manages dropshipping and e-commerce operations end to end. The system was structured to enable millions of products to be imported into the system in bulk and in sync through supplier API integration, orders to be transmitted automatically to the supplier, and shipment tracking to be managed in real time through cargo integration.<br><br>With the Stripe payment infrastructure, I designed a secure payment flow supporting Google Pay, PayPal, and bank cards, and integrated automatic invoice generation and email notification processes after payment. By developing a multi-currency (USD, GBP, EUR) support and a dynamic currency selection mechanism through IP-based location detection, I optimized the global user experience.<br><br>In authentication processes, I established a secure and flexible identity verification infrastructure by providing both internal membership and Google OAuth integration. I designed high-traffic operations such as product search, filtering, pagination, category-based listing, and wishlist/cart actions with performance in mind.<br><br>While centralizing product, SEO, and order management through the admin panel, I strengthened system observability and error management with an event-based notification system and an NLog-based logging infrastructure. Thanks to this structure, the order processing workflow was automated, the need for operational intervention was minimized, and the platform gained a globally scalable architecture.<br><br>I separated the checkout flow from the operational data writing process by asynchronizing order creation with RabbitMQ.<br><br>I applied cross-cutting data management strategies such as soft delete, audit fields, and automatic date management to govern the data lifecycle.<br><br>I developed the integration layer that manages token lifecycle, error handling, and data synchronization processes in the supplier API integration.<br><br>I designed a secure and idempotent order processing flow by separating the post-payment order creation process with webhook validation and queue-based processing.<br><br><strong style="color:var(--text);font-style:normal">Technical Contributions and System Design:</strong><br><br>▸ Separated business logic from the presentation layer with a layered architecture (Core, Repository, Service, UI)<br>▸ Made the payment verification process secure and idempotent with Stripe webhook integration<br>▸ Established an asynchronous order processing pipeline with RabbitMQ, making payment and operational processes loosely coupled<br>▸ Developed the integration layer that manages product, logistics, order, and tracking processes with CJ Dropshipping API integration<br>▸ Centralized transaction management in the data access layer with EF Core + Unit of Work approach<br>▸ Designed admin and customer user management securely and flexibly with ASP.NET Core Identity<br>▸ Developed a multi-currency and dynamic pricing infrastructure with memory cache and an external currency API<br>▸ Increased system observability by establishing a SQL-based centralized logging infrastructure with NLog<br>▸ Developed operational backend processes that centralize order, product, cargo, and content management through the admin panel</div>
+        <div class="proj-metric" data-i18n="proj5_metric1">↓ I developed a data processing infrastructure that pulls and synchronizes high-volume product data from supplier APIs in a performant way</div>
+        <div class="proj-metric" data-i18n="proj5_metric2">↓ I significantly reduced dependence on manual operations by automating the process from order to operations</div>
         <div class="proj-tech">
           <span>.NET Core MVC</span><span>RabbitMQ</span><span>Stripe</span><span>Google OAuth</span><span>EF Core</span><span>NLog</span><span>Redis</span><span>CJ Dropshipping API</span>
         </div>
         <div class="proj-footer">
           <a href="https://www.linkedin.com/posts/%C3%B6mer-akku%C5%9F-79a764232_dotnet-netcore-software-activity-7142962879686762496-i5HU?utm_source=share&utm_medium=member_desktop&rcm=ACoAADoh-WYBUPKSLjAIEEPByYLqyVKmCDg5KX8" target="_blank" rel="noopener" class="proj-site-link">
             <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
-            LinkedIn Paylaşımı
+            <span data-i18n="proj5_linkedin">LinkedIn Post</span>
           </a>
         </div>
         </div>
@@ -579,7 +588,7 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
     </div>
 
     <div style="margin-top:3rem">
-      <div class="section-label">GitHub <span style="color:var(--accent2);margin:0 .35rem">✦</span> <span style="text-transform:none;letter-spacing:normal;font-weight:400">Öne çıkan projeler dışındaki çalışmalar</span></div>
+      <div class="section-label" data-i18n-html="github_label">GitHub <span style="color:var(--accent2);margin:0 .35rem">✦</span> <span style="text-transform:none;letter-spacing:normal;font-weight:400">Work beyond the featured projects</span></div>
       <div class="gh-proj-grid">
 
         <a href="https://github.com/akkusomer1/LLM-Dataset-Engine" target="_blank" rel="noopener" class="gh-proj-card">
@@ -598,7 +607,13 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
           <svg class="gh-proj-arrow" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
         </a>
 
-      
+        <a href="https://github.com/akkusomer1/SuperLinkTR" target="_blank" rel="noopener" class="gh-proj-card">
+          <div class="gh-proj-card-left">
+            <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.05.78 2.12v3.14c0 .31.21.67.8.56 4.56-1.52 7.85-5.83 7.85-10.91C23.5 5.65 18.35.5 12 .5z"/></svg>
+            <span class="gh-proj-name">SuperLinkTR</span>
+          </div>
+          <svg class="gh-proj-arrow" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
+        </a>
 
         <a href="https://github.com/akkusomer1/ASP.NETCore7_BlogApplication" target="_blank" rel="noopener" class="gh-proj-card">
           <div class="gh-proj-card-left">
@@ -617,45 +632,45 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
 <!-- EDUCATION -->
 <section id="education" style="background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="section-inner">
-    <div class="section-label">Akademik Geçmiş</div>
-    <h2>Eğitim</h2>
+    <div class="section-label" data-i18n="education_label">Academic Background</div>
+    <h2 data-i18n="education_heading">Education</h2>
     <div class="edu-grid">
       <div class="edu-card">
-        <div class="edu-deg">Yönetim Bilişim Sistemleri — Lisans</div>
+        <div class="edu-deg" data-i18n="edu1_deg">Management Information Systems — Bachelor's Degree</div>
         <div class="edu-uni">Anadolu Üniversitesi</div>
         <div class="edu-year">Haziran 2025</div>
       </div>
       <div class="edu-card">
-        <div class="edu-deg">Bilgisayar Programcılığı — Ön Lisans</div>
+        <div class="edu-deg" data-i18n="edu2_deg">Computer Programming — Associate Degree</div>
         <div class="edu-uni">İstanbul Üniversitesi</div>
-        <div class="edu-year">Devam ediyor</div>
+        <div class="edu-year" data-i18n="edu2_year">Ongoing</div>
       </div>
       <div class="edu-card">
-        <div class="edu-deg">Havacılık Yönetimi — Ön Lisans</div>
+        <div class="edu-deg" data-i18n="edu3_deg">Aviation Management — Associate Degree</div>
         <div class="edu-uni">Altınbaş Üniversitesi</div>
         <div class="edu-year">Haziran 2020</div>
       </div>
     </div>
 
     <div style="margin-top:3rem">
-      <div class="section-label" style="margin-bottom:1rem">Sertifikalar <span style="color:var(--accent2);margin:0 .35rem">✦</span> <span style="text-transform:none;letter-spacing:normal;font-weight:400">Bu listede, çeşitli online platformlardan (Microsoft Learn, Udemy, BTK Akademi vb.) aldığım çok sayıda sertifika arasından en kapsamlı iki programa yer verilmiştir.</span></div>
+      <div class="section-label" style="margin-bottom:1rem" data-i18n-html="cert_label">Certificates <span style="color:var(--accent2);margin:0 .35rem">✦</span> <span style="text-transform:none;letter-spacing:normal;font-weight:400">This list includes the two most comprehensive programs among the many certificates I have earned from various online platforms (Microsoft Learn, Udemy, BTK Akademi, etc.).</span></div>
       <div class="edu-grid">
         <div class="edu-card">
-          <div class="edu-deg">Microsoft Yazılım Uzmanlığı Eğitimi</div>
+          <div class="edu-deg" data-i18n="cert1_deg">Microsoft Software Expertise Training</div>
           <div class="edu-uni">Vektörel Bilişim Eğitim Merkezi</div>
           <div class="edu-year">Ağustos 2022</div>
           <a href="1775820531056.jpg" target="_blank" rel="noopener" class="edu-cert-link">
             <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
-            Sertifikayı Görüntüle
+            <span data-i18n="cert_view">View Certificate</span>
           </a>
         </div>
         <div class="edu-card">
-          <div class="edu-deg">.NET Yazılım Uzmanlığı Eğitimi</div>
+          <div class="edu-deg" data-i18n="cert2_deg">.NET Software Expertise Training</div>
           <div class="edu-uni">Türk Hava Kurumu Üniversitesi</div>
           <div class="edu-year">Mart 2022</div>
           <a href="1775820462414.jpg" target="_blank" rel="noopener" class="edu-cert-link">
             <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
-            Sertifikayı Görüntüle
+            <span data-i18n="cert_view">View Certificate</span>
           </a>
         </div>
       </div>
@@ -668,19 +683,19 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
   <div class="section-inner">
     <div class="contact-grid">
       <div>
-        <div class="section-label">İletişim</div>
-        <h2>Birlikte çalışalım</h2>
-        <p style="color:var(--muted);font-size:15px;line-height:1.8">Yeni fırsatlar, projeler veya teknik konular hakkında konuşmak için her zaman açığım.</p>
+        <div class="section-label" data-i18n="contact_label">Contact</div>
+        <h2 data-i18n="contact_heading">Let's Work Together</h2>
+        <p style="color:var(--muted);font-size:15px;line-height:1.8" data-i18n="contact_text">I am always open to discussing new opportunities, projects, or technical topics.</p>
       </div>
       <div class="contact-links">
         <a href="mailto:akkusomer156@gmail.com" class="contact-link">
-          <div class="contact-link-icon" style="background:rgba(234,67,53,.12)">📧</div>
+          <div class="contact-link-icon" style="background:rgba(234,67,53,.12)">✉</div>
           <div>
             <div class="contact-link-text">akkusomer156@gmail.com</div>
-            <div class="contact-link-label">E-posta</div>
+            <div class="contact-link-label" data-i18n="contact_email">Email</div>
           </div>
         </a>
-        <a href="https://linkedin.com/in/ömer-akkuş-79a764232" target="_blank" class="contact-link">
+        <a href="https://linkedin.com/in/%C3%B6mer-akku%C5%9F-79a764232" target="_blank" class="contact-link">
           <div class="contact-link-icon" style="background:rgba(10,102,194,.12)">in</div>
           <div>
             <div class="contact-link-text">Ömer Akkuş</div>
@@ -695,10 +710,10 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
           </div>
         </a>
         <a href="tel:+905343565487" class="contact-link">
-          <div class="contact-link-icon" style="background:rgba(63,185,80,.1)">📞</div>
+          <div class="contact-link-icon" style="background:rgba(63,185,80,.1)">☎</div>
           <div>
             <div class="contact-link-text">+90 (534) 356 54 87</div>
-            <div class="contact-link-label">Telefon</div>
+            <div class="contact-link-label" data-i18n="contact_phone">Phone</div>
           </div>
         </a>
       </div>
@@ -711,17 +726,201 @@ footer{text-align:center;padding:2rem;font-size:13px;color:var(--muted);border-t
 </footer>
 
 <script>
+var translations = {
+  tr: {
+    page_title: 'Ömer Akkuş — Backend Developer',
+    nav_skills: 'Beceriler',
+    nav_experience: 'Deneyim',
+    nav_projects: 'Projeler',
+    nav_education: 'Eğitim',
+    nav_contact: 'İletişim',
+    hero_tag: 'Backend Developer <span style="color:var(--border);margin:0 .4rem">·</span> <span style="color:var(--muted)">İstanbul, Türkiye</span>',
+    hero_sub: '<strong>.NET, mikroservis mimarileri ve AI/LLM tabanlı çözümler</strong> ile ölçeklenebilir backend sistemleri tasarlıyorum. Yüksek performanslı, veri yoğun ve mission-critical uygulamalarda; asenkron iş akışları, yüksek veri hacmi ve karmaşık iş alanlarını yöneten <strong>dağıtık sistemler</strong> kuruyorum.<br><br>Sadece implementasyonla yetinmiyor; <strong>dayanıklı, sürdürülebilir ve production-ready</strong> mimariler tasarlıyorum. Backend\'lere aktif olarak AI entegre ediyor; <strong>LLM API\'leri, embedding\'ler ve semantik arama</strong> ile akıllı uygulamalar geliştiriyorum.',
+    hero_btn_projects: 'Projeleri Gör',
+    hero_btn_contact: 'İletişime Geç',
+    hero_btn_cv: 'CV İndir',
+    hero_alt: 'Ömer Akkuş',
+    aria_phone: 'Telefon',
+    skills_label: 'Uzmanlık Alanları <span style="color:var(--accent2);margin:0 .35rem">✦</span> <span style="text-transform:none;letter-spacing:normal;font-weight:400">Listelenen teknolojiler, geliştirdiğim projelerde aktif olarak kullandığım ve production deneyimine sahip olduğum araçlardır.</span>',
+    skills_heading: 'Teknik Beceriler',
+    experience_label: 'Kariyer',
+    experience_heading: 'İş Deneyimi',
+    exp1_loc: 'İstanbul, Türkiye · Tam Zamanlı',
+    exp1_b1: 'Kurumsal antrepo ve lojistik yönetim platformunun tüm backend mimarisini tasarladım ve geliştirdim',
+    exp1_b2: 'Akıllı Fatura Otomasyon sistemiyle muhasebe iş yükü %95 azaltıldı; fatura işleme süresi 3–5 dakikadan saniyelere indi',
+    exp1_b3: 'myBati Talep & Ticket Platformu ile tüm departmanlarda talep takibi %100 dijitalleşti, çözüm süreleri %40 kısaldı',
+    exp1_b4: 'Magellan monolitik ERP\'yi mikroservis mimarisine dönüştürme sürecinde aktif rol aldım; Ocelot, JWT, RabbitMQ, Redis entegrasyonları',
+    exp1_b5: 'Docker container\'lar ile ortam bağımsız deployment; Azure DevOps CI/CD pipeline\'ları kuruldu',
+    exp2_loc: 'Uzaktan · Proje Bazlı',
+    exp2_b1: 'Stripe, Google Pay ve PayPal entegrasyonlu, tedarikçi API üzerinden milyonlarca ürün senkronizasyonu yapan dropshipping platformu (ShopInFact) geliştirdim — <em>detaylar Öne Çıkan Projeler bölümünde</em>',
+    exp2_b2: 'Google OAuth + internal üyelik ile kimlik doğrulama altyapısı; NLog tabanlı merkezi loglama sistemi kurdum',
+    exp2_b3: 'Sipariş ve fatura akışlarını KDV, iskonto, çoklu döviz, cari bakiye ve stok mutasyonlarını tek transaction içinde yöneten muhasebe tutarlılığı garantili domain backend kurgusu (Finance & Pre-Accounting Management System) geliştirdim',
+    exp2_b4: 'MediatR tabanlı command/query ayrımı, repository + unit of work pattern ve API versioning ile sürdürülebilir ve entegrasyon dostu RESTful platform mimarisi kurdum',
+    exp2_b5: 'Soft delete, audit trail ve query filter mekanizmalarıyla sistemi izlenebilir ve denetlenebilir hale getirdim',
+    exp3_loc: 'İstanbul, Türkiye · Tam Zamanlı',
+    exp3_b1: 'Poliçe, taksit planları, yenileme döngüsü ve doküman akışlarını tek transaction\'da yöneten portföy merkezli backoffice platformu (Barış Insurance) geliştirdim; inheritance tabanlı ürün modeli ile domain genişletilebilirliğini sağladım',
+    exp3_b2: 'SOAP/XML tabanlı çoklu sigorta şirketi entegrasyonları, subject-action seviyesinde granular yetkilendirme matrisi ve çift veritabanı (SQL Server & PostgreSQL) desteği geliştirdim',
+    exp3_b3: 'Hangfire ile kural bazlı job orchestration ve SignalR ile gerçek zamanlı event akışları kurarak süreçleri otomasyon odaklı hale getirdim; transaction seviyesinde değişiklik izleme ile denetim kabiliyeti sağladım',
+    exp3_b4: 'Kurs, içerik ve kullanıcı ilerleme yönetimini kapsayan dijital öğrenme platformunun (Düşyeri) backend mimarisini geliştirdim; dosya yükleme, kategori yönetimi ve kullanıcı bazlı erişim kontrolü altyapısını kurguladım',
+    exp3_b5: '.NET Core tabanlı katmanlı mimari ve Clean Architecture prensipleriyle kod tabanını yapılandırdım; EF Core, Dapper ve T-SQL ile yüksek performanslı veri erişim katmanları tasarladım',
+    exp4_title: 'Software Developer (Self-Directed Projects)',
+    exp4_loc: 'Kendi İşim · 1 yıl 3 ay',
+    exp4_b1: 'Blog, reklam yönetim sistemi ve e-ticaret benzeri uygulamalar dahil birden fazla backend projesini .NET Core tabanlı çok katmanlı mimari ve Clean Architecture prensipleriyle sıfırdan geliştirdim; API tasarımı, veri modelleme ve iş mantığı katmanlarını uçtan uca kurguladım',
+    exp4_b2: 'SignalR ile gerçek zamanlı çift yönlü iletişim sistemi (chat server & client) hayata geçirerek event-driven mimari ve WebSocket protokolü üzerine hands-on deneyim kazandım',
+    exp4_b3: 'EF Core, Dapper ve SQL Server ile veri erişim katmanları tasarladım; RESTful API\'leri MVC tabanlı frontend uygulamalarla entegre ederek sonraki dönemdeki kurumsal projelerin mimari temelini oluşturdum',
+    projects_label: 'Çalışmalar',
+    projects_heading: 'Öne Çıkan Projeler',
+    badge_solo: 'Uçtan Uca (Tek Geliştirici)',
+    badge_team: 'Takım Geliştirmesi',
+    proj1_name: 'Kurumsal Antrepo & Lojistik Yönetim Platformu',
+    proj1_summary: 'Antrepo, lojistik ve finans operasyonlarını uçtan uca yöneten, yüksek hacimli işlemleri destekleyen kurumsal yazılım platformu.',
+    proj1_desc: 'Antrepo ve serbest depo operasyonlarında parçalı ilerleyen stok, beyan ve finans süreçlerini tek bir tutarlı domain modeli altında birleştiren, operasyonel gerçekliği merkeze alan backend mimarisini kurguladım.<br><br>Yaklaşımımın temelinde, sahadaki fiziksel palet hareketleri ile sistemdeki kayıtlar arasındaki senkronizasyonu kayıpsız sağlamak vardı; palet hiyerarşisi, lokasyon kapasitesi ve çok boyutlu ölçüm dağılımlarını matematiksel olarak normalize ederek deterministik bir stok modeli oluşturdum.<br><br>El terminali ve barkod akışlarını merkezi servislerle entegre ederek veri üretim noktası ile iş kuralı katmanı arasına dijital bir kontrol mekanizması yerleştirdim; operasyonel hız artarken manuel hata payını kritik seviyede düşürdüm.<br><br>Yüksek hacimli operasyonlarda ORM sınırlarını bilinçli olarak esnetip hibrit veri erişim ve server-side işleme stratejileriyle performansı optimize ederken, çok adımlı süreçlerde transaction kurgusu ile veri bütünlüğünü garanti altına aldım.<br><br>Dinamik tarife motorunu; kademeli fiyatlandırma, çoklu para birimi ve vergi senaryolarını yöneten algoritmik bir finansal katman olarak modelledim ve stok hareketleri ile faturalama arasında doğrudan bir mali doğruluk hattı kurdum.<br><br>Doküman, beyan ve raporlama süreçlerini uçtan uca dijitalleştirerek sistemi yalnızca operasyon yöneten değil, finansal görünürlük ve denetlenebilirlik sağlayan bir karar destek platformuna dönüştürdüm.<br><br><strong style="color:var(--text);font-style:normal">Teknik Katkılar ve Sistem Tasarımı:</strong><br><br>▸ Yüksek hacimli depo operasyonlarını desteklemek için performans odaklı veri erişim stratejileri ve sorgu optimizasyonları geliştirdim<br>▸ Saha operasyonları, stok yönetimi ve finansal süreçler arasında veri tutarlılığını sağlayan backend iş kuralı katmanını tasarladım<br>▸ Terminal, barkod ve merkezi sistemler arasında veri akışını yöneten servis tabanlı entegrasyon yapısı kurdum<br>▸ Büyük veri setleri üzerinde çalışan operasyon ekranları için server-side işleme ve verimli veri filtreleme mekanizmaları geliştirdim<br>▸ Çok adımlı iş akışlarında hata toleranslı ve güvenilir işlem yönetimi sağlayan kontrol ve validasyon mekanizmaları kurguladım<br>▸ Operasyonel süreçleri destekleyen raporlama ve veri üretim altyapısını geliştirerek sistemin karar destek yetkinliğini artırdım',
+    proj1_metric1: '↓ Daha önce dış kaynaktan sağlanan sistem, şirket içinde sıfırdan geliştirilerek dışa bağımlılık ortadan kaldırıldı ve operasyonel verimlilik artırıldı.',
+    proj1_metric2: '↓ Stok–saha–finans tek domain modeli · Manuel hata payı kritik seviyede azaldı',
+    proj2_name: 'Akıllı Fatura Yönetim & Muhasebe Otomasyon Sistemi',
+    proj2_summary: 'Gider faturalarını operasyon ve muhasebe sistemleriyle entegre ederek uçtan uca otomatik işleyen kurumsal finans platformu geliştirdim.',
+    proj2_desc: 'Gider faturalarının operasyon ve muhasebe sistemleriyle entegre, kural bazlı ve otomatik işlenmesini sağlayan Akıllı Fatura Yönetim ve Muhasebe Otomasyon altyapısını tasarladım ve geliştirdim.<br><br>Sistem; konteyner numarası, konşimento ve pozisyon bilgileri üzerinden faturaları arka planda analiz ederek kalem bazlı otomatik eşleştirme (yıldızlama) algoritması ile doğru operasyon kayıtlarını tespit eder ve tam eşleşme durumunda faturayı insan müdahalesi olmadan otomatik olarak muhasebeleştirir.<br><br>Kısmi veya hatalı eşleşmelerde kontrollü yönlendirme akışı kurgulanarak sorumluluk ilgili operasyon personeline devredilir ve düzeltme sonrası sistem yeniden doğrulama yaparak süreci tamamlar.<br><br>Önceki yapıda bir faturanın manuel muhasebe girişi ortalama 3–5 dakika sürerken, geliştirilen otomasyon sayesinde faturalar saniyeler içerisinde taranıp ilişkilendirilmekte ve otomatik kayda alınmaktadır.<br><br>Bu dönüşüm ile muhasebe departmanındaki operasyonel iş yükü yaklaşık %95 oranında azaltılmış, manuel mail trafiği ve tekrar eden veri girişleri ortadan kaldırılmış, hata riski minimize edilmiş ve süreç uçtan uca izlenebilir, denetlenebilir ve ölçeklenebilir bir yapıya kavuşturulmuştur.<br><br>Sistem, kural motoru yaklaşımı ve otomatik validasyon mekanizmaları ile yüksek hacimli fatura operasyonlarını performanslı ve güvenilir şekilde yönetmektedir.<br><br><strong style="color:var(--text);font-style:normal">Teknik Katkılar ve Sistem Tasarımı:</strong><br><br>▸ Asenkron ve yüksek hacimli işlem gerektiren fatura işleme süreçlerini RabbitMQ ve .NET Worker Service mimarisi ile yeniden tasarladım<br>▸ UI ile arka plan servisleri arasındaki orkestrasyonu kurarak uzun süren işlemleri web katmanından ayrıştırdım<br>▸ Logo kaynaklı e-fatura XML verilerini parse ederek operasyon ve finans domainleriyle ilişkilendiren veri işleme altyapısını geliştirdim<br>▸ Fatura kalemleri ile operasyon kayıtlarını eşleştiren kural bazlı otomatik eşleştirme (matching engine) geliştirdim<br>▸ Redis tabanlı süreç takibi ve loglama mekanizmaları ile arka plan işlemlerinin izlenebilirliğini sağladım<br>▸ Logo ERP ile operasyonel sistem arasında çift yönlü finans entegrasyonu geliştirerek veri tutarlılığını garanti altına aldım<br>▸ Yüksek hacimli fatura operasyonlarını ölçeklenebilir ve performanslı şekilde yönetebilecek sistem mimarisi kurguladım<br>▸ Manuel muhasebe giriş süresini dakika seviyesinden saniyelere indirerek süreçleri %95 oranında optimize ettim',
+    proj2_metric1: '↓ Manuel muhasebe giriş süresini 3–5 dakikadan saniyelere indirerek süreç hızını önemli ölçüde artırdım',
+    proj2_metric2: '↓ Muhasebe operasyonlarındaki manuel iş yükünü yaklaşık %95 oranında azaltarak hata riskini minimize ettim',
+    proj3_name: 'myBati — Talep, Ticket & Bildirim Yönetim Platformu',
+    proj3_summary: 'Outlook entegrasyonu ve event-driven mimari ile çalışan, kurumsal talep, ticket ve bildirim süreçlerini uçtan uca yöneten merkezi platform geliştirdim.',
+    proj3_desc: 'Kurumsal ölçekte dağınık ve izlenemeyen talep süreçlerini ortadan kaldırmak için, Outlook ile çift yönlü senkron çalışan ve e-postaları doğrudan ticket yaşam döngüsüne dahil eden merkezi bir platform kurguladım.<br><br>Mailbox\'ı Microsoft Graph üzerinden sürekli izleyerek gelen e-postaları otomatik ticket kaydına dönüştüren; IT, Finans, İK ve Satın Alma dahil tüm hizmet departmanlarını tek omurgada birleştiren kurumsal bir Talep ve Görev Yönetim Platformu inşa ettim.<br><br>Microsoft Graph entegrasyonu ile mail trafiği operasyonel iş akışına dönüştürülürken, event-driven mimari sayesinde kullanıcı etkileşimleri ile I/O yoğun süreçler birbirinden ayrıştırdım.<br><br>Outlook ile çift yönlü senkron çalışan bu yapı içerisinde RabbitMQ + Worker Service mimarisi kullanarak bildirim, mail akışları, SLA kontrolü ve kullanıcı senkronizasyonunu web request hattından tamamen izole ettim.<br><br>E-posta içeriklerini (HTML body, reply chain ve subject) ayrıştırarak yeni ticket veya mevcut ticket yanıtı olarak işleyen akıllı mail parsing altyapısını geliştirdim.<br><br>Ticket bazlı erişim kontrolü ve rol tabanlı yetkilendirme mekanizmaları ile kullanıcıların yalnızca yetkili oldukları taleplere erişebilmesini sağlayan güvenlik katmanını tasarladım.<br><br>Harici kimlik doğrulama servisinden gelen JWT token\'larını doğrulayıp uygulama içi rol ve yetki modeline dönüştüren kimlik entegrasyon yapısını kurguladım.<br><br>NLog tabanlı merkezi loglama altyapısı ile sistem davranışlarını izlenebilir hale getirerek hata analizi ve operasyonel takibi kolaylaştırdım.<br><br>Bu sayede ticket yaşam döngüsünü ölçeklenebilir, operasyonel olarak izlenebilir ve sürdürülebilir hale getirirken; Task modülü, KPI bazlı raporlama ve ERP entegrasyonu ile tüm süreçleri uçtan uca ölçülebilir bir yapıya dönüştürdüm.<br><br>Sonuç olarak tüm hizmet departmanları tek bir domain altında birleşirken, karar alma ve operasyonel görünürlük veri odaklı hale getirildi.<br><br><strong style="color:var(--text);font-style:normal">Teknik Katkılar ve Sistem Tasarımı:</strong><br><br>▸ Mail tabanlı ticket ingestion sürecini Microsoft Graph API ile entegre ederek e-posta → ticket dönüşümünü otomatik hale getirdim<br>▸ RabbitMQ ve Worker Service mimarisi ile mail, bildirim ve kullanıcı senkronizasyon süreçlerini asenkronlaştırarak web katmanından ayrıştırdım<br>▸ Web uygulaması ile arka plan servisleri arasında event-driven iletişim modeli kurarak sistemin ölçeklenebilirliğini artırdım<br>▸ Dapper ve stored procedure tabanlı veri erişim stratejileri ile yüksek hacimli dashboard ve raporlama sorgularını optimize ettim<br>▸ Redis tabanlı token ve oturum yönetimi ile kullanıcı deneyimini iyileştiren merkezi cache yapısı kurdum<br>▸ JWT doğrulama ve cookie tabanlı kimlik yönetimini birleştirerek güvenli ve esnek bir authentication/authorization modeli geliştirdim<br>▸ FTP tabanlı dosya yönetimi ile attachment ve inline görsellerin merkezi ve performanslı şekilde saklanmasını sağladım<br>▸ Worker servislerini bağımsız görevler halinde kurgulayarak mail işleme, notification ve kullanıcı senkronizasyon süreçlerini ayrıştırdım<br>▸ NLog ile veritabanına yazılan loglar üzerinden sistemin gözlemlenebilirliğini ve hata izlenebilirliğini artırdım',
+    proj3_metric1: '↓ Tüm departmanlarda talep süreçlerini %100 dijitalleştirerek manuel e-posta takibini ortadan kaldırdım ve ortalama çözüm sürelerini %40 oranında iyileştirdim',
+    proj3_metric2: '↓ Event-driven mimari ile I/O yükünü web katmanından ayırarak performans ve ölçeklenebilirliği artırdım',
+    proj4_name: 'Magellan Microservices — ERP Dönüşümü',
+    proj4_summary: 'Monolitik ERP sistemini mikroservis mimarisine dönüştürerek bağımsız servisler, merkezi gateway ve asenkron iletişim ile ölçeklenebilir bir backend platformu geliştirdim.',
+    proj4_desc: 'Şirketin ASP.NET MVC tabanlı, hava/kara/deniz taşımacılığı, muhasebe-finans, CRM ve operasyon modüllerinin tek bir monolitik yapı altında çalıştığı Magellan ERP sistemini mikroservis mimarisine dönüştürme sürecinde aktif rol aldım.<br><br>Domain sınırlarını yeniden tasarlayarak sistemi bağımsız servisler (Identity, UserManagement, HealthCheck vb.) şeklinde ayrıştırdım ve servisler arası iletişimi API Gateway (Ocelot) üzerinden yönettim.<br><br>Kimlik doğrulama ve yetkilendirme süreçlerini merkezi Identity servisi altında JWT tabanlı güvenlik altyapısı ile kurguladım; token üretimi, claim yönetimi ve custom middleware yapıları geliştirdim.<br><br>Servisler arası asenkron iletişim için RabbitMQ entegrasyonu, cache yönetimi için Redis kullanarak performans ve ölçeklenebilirliği artırdım.<br><br>Domain ve tenant bilgisine göre dinamik veri tabanı seçimi yaparak çoklu şirket ve çoklu lokasyon senaryolarını destekleyen bir veri erişim yapısı kurguladım.<br><br>Ortak ihtiyaçları SharedLibraries altında soyutlayarak (DapperDb, ApiResponse, Logging, Validation, Helper katmanları) tekrar eden bağımlılıkları minimize ettim ve kod standardizasyonu sağladım.<br><br>Background işlemler için Worker Service geliştirerek e-posta gönderimi ve doğrulama kodu süreçlerini ana akıştan izole ettim.<br><br>Her servisi Docker container\'ları içerisinde çalışacak şekilde yapılandırarak ortam bağımsız deploy edilebilir, izole ve yatay ölçeklenebilir bir altyapı kurdum.<br><br>Serilog ve Elasticsearch entegrasyonu ile merkezi loglama altyapısı kurarak sistemin izlenebilirliğini ve üretim ortamı hata analizini güçlendirdim.<br><br>SQL Server, Redis, RabbitMQ ve servis endpoint\'lerini kapsayan HealthCheck altyapısı ile sistem bağımlılıklarını merkezi olarak izlenebilir hale getirdim.<br><br>Polly tabanlı retry ve resilience politikaları ile servisler arası iletişimde hata toleransını artırdım.<br><br>Bu dönüşüm sayesinde sistem; bağımsız versiyonlanabilir, modüler, cloud-ready ve yüksek trafikte performanslı çalışabilecek sürdürülebilir bir mimariye taşındı.<br><br><strong style="color:var(--text);font-style:normal">Teknik Katkılar ve Sistem Tasarımı:</strong><br><br>▸ Monolitik ERP yapıyı domain bazlı ayrıştırarak mikroservis mimarisine uygun servis sınırlarını yeniden tanımladım<br>▸ Ocelot API Gateway ile merkezi routing, authentication boundary ve servis erişim kontrolü sağladım<br>▸ JWT tabanlı kimlik doğrulama ve claim bazlı authorization modeli ile servisler arası güvenli iletişim altyapısı kurdum<br>▸ RabbitMQ ile event-driven asenkron iletişim modeli kurarak servisler arası bağımlılıkları gevşettim<br>▸ Worker Service yapısı ile uzun süren ve I/O yoğun işlemleri request/response hattından ayrıştırdım<br>▸ Redis ile dağıtık cache ve oturum yönetimi sağlayarak performans ve kullanıcı deneyimini iyileştirdim<br>▸ Dapper tabanlı veri erişim katmanı ile performans odaklı ve kontrol edilebilir SQL yönetimi sağladım<br>▸ Serilog ve Elasticsearch ile merkezi loglama altyapısı kurarak sistem gözlemlenebilirliğini artırdım<br>▸ HealthCheck mekanizmaları ile sistem bileşenlerinin canlı durumunu izlenebilir hale getirdim<br>▸ Docker ile servisleri containerize ederek ortam bağımsız, izole ve ölçeklenebilir deployment altyapısı oluşturdum',
+    proj4_metric1: '↓ Monolitik ERP yapıyı mikroservislere dönüştürerek bağımsız deploy ve ölçeklenebilirlik sağladım',
+    proj4_metric2: '↓ RabbitMQ ve Redis ile sistem performansını artırarak yüksek trafikte stabil çalışma sağladım',
+    proj5_name: 'ShopInFact — API Tabanlı Dropshipping & E-Ticaret Platformu',
+    proj5_summary: 'Dropshipping ve e-ticaret operasyonlarını uçtan uca otomatikleştiren, tedarikçi entegrasyonu ve çoklu ödeme altyapısına sahip ölçeklenebilir bir e-ticaret backend platformu geliştirdim.',
+    proj5_desc: 'Dropshipping ve e-ticaret operasyonlarını uçtan uca yöneten, .NET Core MVC tabanlı ölçeklenebilir bir e-ticaret platformunun backend mimarisini tasarladım ve geliştirdim. Sistem; tedarikçi API entegrasyonu üzerinden milyonlarca ürünün toplu ve senkronize şekilde sisteme aktarılmasını, siparişlerin otomatik olarak tedarikçiye iletilmesini ve kargo entegrasyonu sayesinde gönderi takibinin gerçek zamanlı yönetilmesini sağlayacak şekilde kurgulandı.<br><br>Stripe ödeme altyapısı ile Google Pay, PayPal ve banka kartı destekli güvenli ödeme akışı tasarlayarak ödeme sonrası otomatik fatura üretimi ve e-posta bildirim süreçlerini entegre ettim. Çoklu para birimi (USD, GBP, EUR) desteği ve IP bazlı lokasyon tespiti ile dinamik döviz seçimi mekanizması geliştirerek global kullanıcı deneyimini optimize ettim.<br><br>Authentication süreçlerinde hem internal üyelik hem Google OAuth entegrasyonu sağlayarak güvenli ve esnek kimlik doğrulama altyapısı kurdum. Ürün arama, filtreleme, sayfalama, kategori bazlı listeleme ve wishlist/sepete ekleme gibi yüksek trafikli işlemleri performans odaklı tasarladım.<br><br>Admin panel üzerinden ürün, SEO ve sipariş yönetimini merkezi hale getirirken; olay bazlı bildirim sistemi ve NLog tabanlı loglama altyapısı ile sistemin izlenebilirliğini ve hata yönetimini güçlendirdim. Bu yapı sayesinde sipariş işleme süreci otomatikleştirilmiş, operasyonel müdahale ihtiyacı minimize edilmiş ve platform global ölçekte ölçeklenebilir bir mimariye kavuşturulmuştur.<br><br>Sipariş oluşturma sürecini RabbitMQ ile asenkronlaştırarak checkout akışı ile operasyonel veri yazım sürecini birbirinden ayrıştırdım.<br><br>Veri yaşam döngüsünü yönetmek için soft delete, audit alanları ve otomatik tarih yönetimi gibi cross-cutting veri yönetim stratejileri uyguladım.<br><br>Tedarikçi API entegrasyonunda token yaşam döngüsü, hata yönetimi ve veri senkronizasyon süreçlerini yöneten entegrasyon katmanı geliştirdim.<br><br>Ödeme sonrası sipariş oluşturma sürecini webhook doğrulaması ve kuyruk tabanlı işleme ile ayrıştırarak güvenli ve idempotent bir order processing akışı kurguladım.<br><br><strong style="color:var(--text);font-style:normal">Teknik Katkılar ve Sistem Tasarımı:</strong><br><br>▸ Katmanlı mimari (Core, Repository, Service, UI) ile business logic\'i presentation katmanından ayrıştırdım<br>▸ Stripe webhook entegrasyonu ile ödeme doğrulama sürecini güvenli ve idempotent hale getirdim<br>▸ RabbitMQ ile asenkron sipariş işleme hattı kurarak ödeme ve operasyon süreçlerini gevşek bağlı hale getirdim<br>▸ CJ Dropshipping API entegrasyonu ile ürün, lojistik, sipariş ve tracking süreçlerini yöneten entegrasyon katmanı geliştirdim<br>▸ EF Core + Unit of Work yaklaşımı ile veri erişim katmanında transaction yönetimini merkezi hale getirdim<br>▸ ASP.NET Core Identity ile admin ve müşteri kullanıcı yönetimini güvenli ve esnek şekilde tasarladım<br>▸ Memory cache ve external currency API ile çoklu para birimi ve dinamik fiyatlama altyapısı geliştirdim<br>▸ NLog ile SQL tabanlı merkezi loglama altyapısı kurarak sistemin gözlemlenebilirliğini artırdım<br>▸ Admin panel üzerinden sipariş, ürün, kargo ve içerik yönetimini merkezi hale getiren operasyonel backend süreçleri geliştirdim',
+    proj5_metric1: '↓ Yüksek hacimli ürün verisini tedarikçi API\'lerden performanslı şekilde çekip senkronize eden veri işleme altyapısı geliştirdim',
+    proj5_metric2: '↓ Siparişten operasyona uzanan süreci otomatikleştirerek manuel işlem bağımlılığını önemli ölçüde azalttım',
+    proj5_linkedin: 'LinkedIn Paylaşımı',
+    github_label: 'GitHub <span style="color:var(--accent2);margin:0 .35rem">✦</span> <span style="text-transform:none;letter-spacing:normal;font-weight:400">Öne çıkan projeler dışındaki çalışmalar</span>',
+    education_label: 'Akademik Geçmiş',
+    education_heading: 'Eğitim',
+    edu1_deg: 'Yönetim Bilişim Sistemleri — Lisans',
+    edu2_deg: 'Bilgisayar Programcılığı — Ön Lisans',
+    edu2_year: 'Devam ediyor',
+    edu3_deg: 'Havacılık Yönetimi — Ön Lisans',
+    cert_label: 'Sertifikalar <span style="color:var(--accent2);margin:0 .35rem">✦</span> <span style="text-transform:none;letter-spacing:normal;font-weight:400">Bu listede, çeşitli online platformlardan (Microsoft Learn, Udemy, BTK Akademi vb.) aldığım çok sayıda sertifika arasından en kapsamlı iki programa yer verilmiştir.</span>',
+    cert1_deg: 'Microsoft Yazılım Uzmanlığı Eğitimi',
+    cert2_deg: '.NET Yazılım Uzmanlığı Eğitimi',
+    cert_view: 'Sertifikayı Görüntüle',
+    contact_label: 'İletişim',
+    contact_heading: 'Birlikte Çalışalım',
+    contact_text: 'Yeni fırsatlar, projeler veya teknik konular hakkında konuşmak için her zaman açığım.',
+    contact_email: 'E-posta',
+    contact_phone: 'Telefon',
+    closed_note: '<svg viewBox="0 0 24 24"><path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 0 1 6.2 0v2z"/></svg>Proje, şirket içi operasyonları yöneten kapalı bir sistemdir — dış erişime açık değildir.',
+    toggle_open: 'Detayları Gör',
+    toggle_close: 'Kapat'
+  }
+};
+
+var defaultContent = {};
+
+function captureDefaultContent() {
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    defaultContent[el.getAttribute('data-i18n')] = el.textContent;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    defaultContent[el.getAttribute('data-i18n-html')] = el.innerHTML;
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(function(el) {
+    defaultContent[el.getAttribute('data-i18n-alt')] = el.getAttribute('alt');
+  });
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(function(el) {
+    defaultContent[el.getAttribute('data-i18n-aria-label')] = el.getAttribute('aria-label');
+  });
+  defaultContent.page_title = document.title;
+  defaultContent.toggle_open = 'View Details';
+  defaultContent.toggle_close = 'Close';
+}
+
+function getDictionary(lang) {
+  return lang === 'tr' ? translations.tr : defaultContent;
+}
+
+function updateToggleLabels(lang) {
+  var dict = getDictionary(lang);
+  document.querySelectorAll('.proj-toggle').forEach(function(btn) {
+    var label = btn.querySelector('.toggle-label');
+    var isOpen = btn.getAttribute('aria-expanded') === 'true';
+    label.textContent = isOpen ? dict.toggle_close : dict.toggle_open;
+  });
+}
+
+function applyLanguage(lang) {
+  var dict = getDictionary(lang);
+  document.title = dict.page_title;
+  document.documentElement.lang = lang;
+
+  var cvLink = document.querySelector('[data-cv-link]');
+  if (cvLink) {
+    cvLink.setAttribute('href', lang === 'tr' ? 'Omer_Akkus_CV.pdf' : 'Omer_Akkus_CV_En.pdf');
+  }
+
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) {
+      el.textContent = dict[key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) {
+      el.innerHTML = dict[key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-alt]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-alt');
+    if (dict[key] !== undefined) {
+      el.setAttribute('alt', dict[key]);
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-aria-label');
+    if (dict[key] !== undefined) {
+      el.setAttribute('aria-label', dict[key]);
+    }
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+
+  updateToggleLabels(lang);
+  localStorage.setItem('portfolio-language', lang);
+}
+
 function toggleProj(btn) {
   var collapse = btn.nextElementSibling;
   var isOpen = btn.getAttribute('aria-expanded') === 'true';
   btn.setAttribute('aria-expanded', !isOpen);
-  btn.querySelector('.toggle-label').textContent = isOpen ? 'Detayları Gör' : 'Kapat';
   if (isOpen) {
     collapse.classList.remove('open');
   } else {
     collapse.classList.add('open');
   }
+  updateToggleLabels(document.documentElement.lang === 'tr' ? 'tr' : 'en');
 }
+
+captureDefaultContent();
+
+document.querySelectorAll('.lang-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    applyLanguage(btn.getAttribute('data-lang'));
+  });
+});
+
+applyLanguage(localStorage.getItem('portfolio-language') === 'tr' ? 'tr' : 'en');
 </script>
 </body>
 </html>
+
